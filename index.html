@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Site 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: pink;
+    overflow-x: hidden;
+}
+
+/* Floating Emojis */
+.emoji {
+    position: fixed;
+    font-size: 20px;
+    animation: float 10s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+/* Login Page */
+#loginPage {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: hotpink;
+    color: white;
+    cursor: pointer;
+}
+
+/* Main Page */
+#mainPage {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: red;
+}
+
+/* Capsules */
+.capsule {
+    background: white;
+    margin: 20px auto;
+    padding: 15px;
+    width: 70%;
+    border-radius: 50px;
+    box-shadow: 0 0 10px pink;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+.capsule.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Popup */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px hotpink;
+    text-align: center;
+    z-index: 1000;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Floating Emojis -->
+<script>
+for(let i=0;i<30;i++){
+    let e=document.createElement("div");
+    e.className="emoji";
+    e.innerHTML=Math.random()>0.5?"💖":"🌹";
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(e);
+}
+</script>
+
+<!-- Login Page -->
+<div id="loginPage">
+    <h2>Login 💖</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- Main Page -->
+<div id="mainPage">
+    <h1>I LOVE YOU BEBY 💖</h1>
+
+    <div class="capsule" onclick="showMessage('In a world full of temporary things, you are my forever. 💖')">
+        You are my happiness 💖
+    </div>
+
+    <div class="capsule" onclick="showMessage('I don’t just love you… I feel you in every heartbeat, every breath, every silent moment. 🌹')">
+        I fall for you every day 🌹
+    </div>
+
+    <div class="capsule" onclick="showMessage('Even if I had a thousand lives, I would still choose you in every single one. ❤️')">
+        You are my dream come true 💕
+    </div>
+
+    <div class="capsule" onclick="showMessage('You are not just part of my life… you are the reason my life feels alive. 💓')">
+        My heart belongs to you 💖
+    </div>
+
+    <div class="capsule" onclick="showMessage('No matter what happens, no matter how far… my heart will always find its way back to you. 💍')">
+        Forever yours ❤️
+    </div>
+</div>
+
+<!-- Popup -->
+<div id="popup">
+    <p id="popupText"></p>
+    <button onclick="closePopup()">Close 💖</button>
+</div>
+
+<script>
+function login(){
+    let u=document.getElementById("username").value;
+    let p=document.getElementById("password").value;
+
+    if(u==="APRIL" && p==="DECEMBER"){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("mainPage").style.display="block";
+        showCapsules();
+    } else {
+        alert("Wrong Username or Password 💔");
+    }
+}
+
+/* Scroll animation */
+function showCapsules(){
+    let caps=document.querySelectorAll(".capsule");
+
+    function reveal(){
+        let trigger=window.innerHeight;
+
+        caps.forEach((c)=>{
+            let top=c.getBoundingClientRect().top;
+
+            if(top<trigger){
+                c.classList.add("show");
+            }
+        });
+    }
+
+    window.addEventListener("scroll",reveal);
+    reveal();
+}
+
+/* Popup functions */
+function showMessage(msg){
+    document.getElementById("popupText").innerText = msg;
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
